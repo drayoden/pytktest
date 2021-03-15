@@ -3,7 +3,7 @@ from tkinter import *
 w = Tk() 
 w.title("Calc")
 
-e = Entry(w, font=("Calibri",30), width=10, borderwidth=0,  )
+e = Entry(w, font=("Calibri",30), width=10, borderwidth=0, justify="right" )
 e.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
 
 def button_click(n):
@@ -17,23 +17,47 @@ def button_clear():
 def button_add():
     first = e.get()
     global g_fnum 
+    global math
+    math = "+"
     g_fnum = int(first) 
     e.delete(0, END)
 
 def button_equal():
     second = int(e.get())
     e.delete(0, END)
-    e.insert(0, g_fnum + second)
+    if math == '+':
+        e.insert(0, g_fnum + second)    
+    if math == '-':
+        e.insert(0, g_fnum - second)    
+    if math == '*':
+        e.insert(0, g_fnum * second)    
+    if math == '/':
+        e.insert(0, g_fnum / second)    
 
 def button_sub():
-    return
+    first = e.get()
+    global g_fnum 
+    global math
+    math = "-"
+    g_fnum = int(first) 
+    e.delete(0, END)
 
 def button_mult():
-    return
-    
+    first = e.get()
+    global g_fnum 
+    global math
+    math = "*"
+    g_fnum = int(first) 
+    e.delete(0, END)
+        
 def button_divide():
-    return
-    
+    first = e.get()
+    global g_fnum 
+    global math
+    math = "/"
+    g_fnum = int(first) 
+    e.delete(0, END)
+
 
 b1 = Button(w,text="1", padx=40, pady=20, command=lambda: button_click(1))
 b2 = Button(w,text="2", padx=40, pady=20, command=lambda: button_click(2))
